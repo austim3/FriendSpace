@@ -12,7 +12,7 @@ import {
 
 } from 'antd-mobile'
 
-// import accountManager from '../DataServer/AccountMananger'
+ import accountManager from '../DataServer/AccountMananger'
 
 export default class EditPasswordScreen extends Component{
 
@@ -61,7 +61,17 @@ export default class EditPasswordScreen extends Component{
                    type={'primary'}
                    onClick={async()=>{
                        //const result=await accountManager.editPassword(this.state.old_password,this.state.new )
-                   }}
+                    console.log(result);
+                    if (result.success === false) {
+                        Toast.fail(result.errorMessage);
+                        return;
+                    }
+                    Modal.alert('修改成功','点击确认键返回',[{
+                        text:'确认',
+                        onPress:()=>{this.props.history.goBack()}
+                    }])
+                    
+                    }}
                 >
                 提交修改
                 </Button>
