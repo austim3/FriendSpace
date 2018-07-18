@@ -16,6 +16,8 @@ import RegisterScreen from './Screen/RegisterScreen';
 import ChangePersonInfoScreen from './Screen/ChangePersonInfoScreen';
 
 import CreateUserScreen from './Screen/CreateUserScreen';
+import EditPasswordScreen from './Screen/EditPasswordScreen';
+import PerssonInfoScreen from './Screen/PerssonInfoScreen';
 
 import AScreen from './Screen/AScreen';
 import BScreen from './Screen/BScreen';
@@ -38,6 +40,8 @@ class App extends Component {
           <Route path={'/RegisterScreen'} component={RegisterScreen} />
         <Route path={'/ChangePersonInfoScreen'} component={ChangePersonInfoScreen} />
         <Route path={'/CreateUserScreen'} component={CreateUserScreen} />
+        <Route path={'/EditPasswordScreen'} component={EditPasswordScreen} />
+        <Route path={'/PerssonInfoScreen'} component={PerssonInfoScreen} />
         </div>
       </DocumentTitle>
     );

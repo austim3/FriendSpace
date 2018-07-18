@@ -11,10 +11,10 @@ import {
 
 }from 'antd-mobile';
 
-// import {imageBaseURL} from '../DataServer/URLConfig';
+import {imageBaseURL} from '../DataServer/URLConfig';
 
-// import accountManager from '../DataServer/AccountManager';
-// import userManager from '../DataServer/UserManager';
+import accountManager from '../DataServer/AccountManager';
+import userManager from '../DataServer/UserManager';
 
 export default class AScreen extends Component {
 
