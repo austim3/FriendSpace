@@ -4,7 +4,6 @@ import{
     getUserURL,
 } from './URLConfig';
 
-import axios from 'axios';
 class UserManager{
   async createUser(nickName,sign,image){
       try {
@@ -61,14 +60,22 @@ class UserManager{
       }
 
   }
-  async getUser(userId){
+  async getUser(userId=0){
       try {
           const access_token = localStorage.access_token;
-          const res=await axios.post(getUserURL,{
-              access_token,
-              userId
-          })
-          return res.json;
+          const res = await fetch(getUserURL,{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({access_token})
+        });
+        const result= res.json();
+
+        return result;
+
+
       } catch (error) {
           return {
               success:false,

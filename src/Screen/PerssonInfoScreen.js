@@ -19,8 +19,6 @@ import userManager from '../DataManager/UserManager';
 export default class AScreen extends Component {
 
   async componentDidMount(){
-    try {
-
       if(accountManager.isLogin() === false){
         return;
       }
@@ -31,11 +29,6 @@ export default class AScreen extends Component {
         return;
       }
       this.setState({user:result.data});
-
-    } catch (error) {
-      
-    }
-    
   }
 
 

@@ -13,6 +13,7 @@ import {
 } from 'antd-mobile';
 
 import userManager from'../DataManager/UserManager'
+// import {imageBaseURL} from '../DataManager/URLConfig';
 
 export default class ChangePersonInfoScreen extends Component {
     constructor(props){
@@ -20,7 +21,7 @@ export default class ChangePersonInfoScreen extends Component {
         this.state ={
             nickname:props.location.state.nickname,
             sign:props.location.state.sign,
-            files:[]
+            files:[],
         }
     }
     render(){
@@ -68,7 +69,7 @@ export default class ChangePersonInfoScreen extends Component {
                         return;
                     }
 
-                           const reslut = await userManager.register(this.state.nickname,this.state.sign);
+                           const reslut = await userManager.updateUser(this.state.nickname,this.state.sign);
                             if(reslut.success === false){
                                Toast.fail(reslut.errorMessage);
                                return;
