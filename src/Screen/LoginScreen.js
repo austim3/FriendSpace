@@ -3,24 +3,28 @@ import React, { Component } from 'react'
 import { 
     Button,
     Toast,
-    NavBar,
     WingBlank, 
     WhiteSpace ,
     List,
     InputItem,
+    Flex
 } from 'antd-mobile';
 
-import userManager from '../DataServer/UserManager';
-
-
+import accountManager from '../DataManager/AccountManager';
 
 export default class LoginScreen extends Component {
+
+    componentDidMount(){
+        if(accountManager.isLogin() === true){
+            this.props.history.replace('/HomeScreen');
+        }
+    }
 
     constructor(props) {
       super(props)
     
       this.state = {
-         username:'',
+         email:'',
          password:''
       }
     }
@@ -28,17 +32,13 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-      <div>
-        <NavBar
-            mode="dark"
-        >登录</NavBar>
-        <WhiteSpace/>
+      <div>  
         <List>
             <InputItem
                 type={'text'}
-                value={this.state.username}
-                onChange={(username)=>{this.setState({username})}}
-                placeholder={'请输入登录用户名'}
+                value={this.state.email}
+                onChange={(email)=>{this.setState({email})}}
+                placeholder={'请输入登录密码'}
             >
                 用户名
             </InputItem>
@@ -53,30 +53,39 @@ export default class LoginScreen extends Component {
         </List>
         <WhiteSpace/>
         <WingBlank>
-            <Button
-                type={'primary'}
-                onClick={async()=>{
-                    console.log('xxx')
-                    const result = await userManager.login(this.state.username,this.state.password);
-                    console.log(result);
-                    if(result.success === false){
-                        Toast.fail(result.errorMessage);
-                        return;
-                    }
-                    this.props.history.replace('/HomeScreen');
-                }}
-            >
-                登录
-            </Button>
-            <WhiteSpace/>
-            <Button
-                type={'primary'}
-                onClick={()=>{
-                    this.props.history.push('/RegisterScreen',{})
-                }}
-            >
-                注册
-            </Button>
+            <Flex>
+                <Button
+                    style={{flex:1,marginRight:5}}
+                    type={'primary'}
+                    onClick={async()=>{
+                        const result = await accountManager.login(this.state.email,this.state.password);
+                        console.log(result);
+                        if(result.success === false){
+                            Toast.fail(result.errorMessage,1);
+                            return;
+                        }
+
+                        if(!result.data.userId){
+                            this.props.history.push('/CreateUserScreen');
+                            return;
+                        }
+
+                        this.props.history.replace('/HomeScreen');
+
+                    }}
+                >
+                    登录
+                </Button>
+                <Button
+                    style={{flex:1,marginLeft:5}}
+                    type={'primary'}
+                    onClick={async()=>{
+                        this.props.history.push('/RegisterScreen');
+                    }}
+                >
+                    注册
+                </Button>  
+            </Flex>
         </WingBlank>
       </div>
     )

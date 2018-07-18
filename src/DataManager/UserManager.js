@@ -4,6 +4,10 @@ import{
     getUserURL,
 } from './URLConfig';
 
+import {
+    FromData
+
+}from 'form-data';
 
 class UserManager{
   async createUser(nickName,sign,image){

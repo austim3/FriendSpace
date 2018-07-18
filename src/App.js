@@ -14,6 +14,7 @@ import { Button } from 'antd-mobile';
 import RegisterScreen from './Screen/RegisterScreen';
 import ChangePersonInfoScreen from './Screen/ChangePersonInfoScreen';
 import HomeScreen from './Screen/HomeScreen';
+import LoginScreen from './Screen/LoginScreen';
 import CreateMessageScreen from './Screen/CreateMessageScreen';
 import CreateUserScreen from './Screen/CreateUserScreen';
 import AScreen from './Screen/AScreen';
@@ -39,7 +40,7 @@ class App extends Component {
           <Route path={'/CreateUserScreen'} component={CreateUserScreen} />
           <Route path={'/CreateMessageScreen'} component={CreateMessageScreen} />
           <Route path={'/HomeScreen'} component={HomeScreen} />
-          
+          <Route path={'/LoginScreen'} component={LoginScreen} />
         </div>
       </DocumentTitle>
     );
