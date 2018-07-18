@@ -62,7 +62,7 @@ export default class LoginScreen extends Component {
                         Toast.fail(result.errorMessage);
                         return;
                     }
-                    this.props.history.replace('/HomeScreen');
+                    this.props.history.replace('/TabBarScreen');
                 }}
             >
                 登录

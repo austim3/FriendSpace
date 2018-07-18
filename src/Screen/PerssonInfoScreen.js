@@ -24,7 +24,7 @@ export default class AScreen extends Component {
         return;
     }
 
-    const result = await userManager.getUserInfo();
+    const result = await userManager.getUser();
 
     if(result.success === false){
         Toast.fail(result.errorMessage,1);
@@ -68,8 +68,8 @@ export default class AScreen extends Component {
            <InputItem
              type={'text'}
              editable={false}
-            // value={this.state.user.sign}
-             onChange={(sign)=>{this.setState({user:{sign}})}}
+            value={this.state.user.nickname}
+             onChange={(nickname)=>{this.setState({user:{nickname}})}}
              placeholder={'请输入昵称'}
            >
            昵称
@@ -77,6 +77,8 @@ export default class AScreen extends Component {
            <InputItem
              type={'text'}
              editable={false}
+             value={this.state.user.sign}
+             onChange={(sign)=>{this.setState({user:{sign}})}}
              placeholder={'请输入个性签名'}
            >
            签名
