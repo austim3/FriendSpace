@@ -12,6 +12,7 @@ import {
     Icon
 } from 'antd-mobile';
 
+import accountManager from '../DataManager/AccountManager';
 
 export default class CreateUserScreen extends Component {
     constructor(props){
@@ -67,12 +68,12 @@ export default class CreateUserScreen extends Component {
                         return;
                     }
 
-                          //  const reslut = await userManager.register(this.state.nickname,this.state.sign);
-                            //if(reslut.success === false){
-                             //   Toast.fail(reslut.errorMessage);
-                             //   return;
-                          //  }
-                           // this.props.history.relace('/SucceedScreen'); 
+                           const reslut = await accountManager.register(this.state.nickname,this.state.sign);
+                            if(reslut.success === false){
+                               Toast.fail(reslut.errorMessage);
+                               return;
+                           }
+                           this.props.history.push('/HomeScreen'); 
                      }} 
                     >
                         完成注册
