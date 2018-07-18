@@ -10,6 +10,12 @@ import {
 
 import { Button } from 'antd-mobile';
 
+
+import RegisterScreen from './Screen/RegisterScreen';
+import ChangePersonInfoScreen from './Screen/ChangePersonInfoScreen';
+import HomeScreen from './Screen/HomeScreen';
+import CreateMessageScreen from './Screen/CreateMessageScreen';
+import CreateUserScreen from './Screen/CreateUserScreen';
 import AScreen from './Screen/AScreen';
 import BScreen from './Screen/BScreen';
 
@@ -29,8 +35,11 @@ class App extends Component {
           <Route path={'/a'} component={AScreen} />
           <Route path={'/b'} component={BScreen} />
           <Route path={'/RegisterScreen'} component={RegisterScreen} />
-        <Route path={'/ChangePersonInfoScreen'} component={ChangePersonInfoScreen} />
-        <Route path={'/CreateUserScreen'} component={CreateUserScreen} />
+          <Route path={'/ChangePersonInfoScreen'} component={ChangePersonInfoScreen} />
+          <Route path={'/CreateUserScreen'} component={CreateUserScreen} />
+          <Route path={'/CreateMessageScreen'} component={CreateMessageScreen} />
+          <Route path={'/HomeScreen'} component={HomeScreen} />
+          
         </div>
       </DocumentTitle>
     );
