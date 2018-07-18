@@ -73,7 +73,7 @@ export default class CreateUserScreen extends Component {
                                Toast.fail(reslut.errorMessage);
                                return;
                            }
-                           this.props.history.push('/HomeScreen'); 
+                           this.props.history.push('/PerssonInfoScreen'); 
                      }} 
                     >
                         完成注册

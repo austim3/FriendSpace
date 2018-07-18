@@ -16,7 +16,7 @@ import {imageBaseURL} from '../DataManager/URLConfig';
 import accountManager from '../DataManager/AccountManager';
 import userManager from '../DataManager/UserManager';
 
-export default class AScreen extends Component {
+export default class PerssonInfoScreen extends Component {
 
   async componentDidMount(){
       if(accountManager.isLogin() === false){
@@ -71,11 +71,12 @@ export default class AScreen extends Component {
            昵称
             </InputItem>
            <InputItem
-             type={'text'}
-             editable={false}
-             value={this.state.user.sign}
-            //  onChange={(sign)=>{this.setState({user:{sign}})}}
-            //  placeholder={'请输入个性签名'}
+              type={'text'}
+              editable={false}
+              value={this.state.user.sign}
+              onChange={(sign)=>{this.setState({user:{sign}})}}
+              placeholder={'请输入个性签名'}
+           
            >
            签名
            </InputItem>
@@ -83,26 +84,28 @@ export default class AScreen extends Component {
         <WhiteSpace/>
         <WingBlank>
             <Button
-              onClick={async()=>{
-                this.props.history.push('/ChangePersonInfoScreen',this.state.user);
-              }}>
+                onClick={async()=>{
+                  this.props.history.push('/ChangePersonInfoScreen',this.state.user);
+              }}
+            >
                 修改个人资料
             </Button>
             <WhiteSpace/>
             <Button
-              onClick={async()=>{
-                this.props.history.push('/EditPasswordScreen',this.state.user);
-              }}>
+                onClick={async()=>{
+                  this.props.history.push('/EditPassWordScreen');
+              }}
+            >
                 修改密码
             </Button>
             <WhiteSpace/>
             <Button
-                type={'warning'}
-                onClick={async()=>{
-                  accountManager.logout();
-                  this.props.history.replace('/');
-                  
-            }}
+                 type={'warning'}
+                 onClick={async()=>{
+                       accountManager.logout();
+                       this.props.history.replace('/');
+                       
+                 }}
             >
                 退出登录
             </Button>
