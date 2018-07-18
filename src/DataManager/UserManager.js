@@ -8,7 +8,7 @@ import{
 class UserManager{
   async createUser(nickName,sign,image){
       try {
-          const fromData= new FromData();
+          const fromData= new FormData();
 
           fromData.append('access_token',localStorage.access_token);
           fromData.append('nickName',nickName);

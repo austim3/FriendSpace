@@ -1,11 +1,28 @@
 import {
+    findUserURL,
     followURL,
     unFollowURL,
     getFollowURL
 } from './URLConfig'
 
+import axios from 'axios';
 class FriendManager {
 
+    async findUser(nickname){
+        try {
+            const access_token = localStorage.access_token;
+            const res = await axios.post(findUserURL,{
+                access_token,
+                nickname
+            })
+            return res.data;
+        } catch (error) {
+            return {
+                success:false,
+                errorMessage:'网络错误'
+            }
+        }  
+    }
     async follow(userId){
         try {
             const follow={
@@ -22,7 +39,7 @@ class FriendManager {
             });
             const result= res.json();
 
-            return resule
+            return result;
 
             
         } catch (error) {
@@ -48,7 +65,7 @@ class FriendManager {
             });
             const result= res.json();
 
-            return resule
+            return result;
 
             
         } catch (error) {
@@ -75,7 +92,7 @@ class FriendManager {
             });
             const result= res.json();
 
-            return resule
+            return result;
 
             
         } catch (error) {

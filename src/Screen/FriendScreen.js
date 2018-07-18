@@ -8,18 +8,17 @@ import {
     SearchBar
 }from 'antd-mobile';
 
-import accoutManager from '../DataSerever/AccountManager';
-import friendManager from '../DataServer/FriendManager';
+import accountManager from '../DataManager/AccountManager';
+import friendManager from '../DataManager/FriendManager';
 
 import FriendListItem from '../ViewComponent/FriendListItem';
-import { fastest } from 'sw-toolbox';
 
 export default class FriendScreen extends Component{
     async componentDidMount(){
         if(accountManager.isLogin()===false){
             return;
         }
-        const result =await friendManager.getFllows()
+        const result =await friendManager.getFollows()
         if(result.success ===false){
             Toast.fail(result.errorMessage);
             return;
@@ -48,7 +47,7 @@ export default class FriendScreen extends Component{
     onRefresh = async()=>{
         try{
             this.setState({refreshing:true});
-            const result = await friendManager.getFllows()
+            const result = await friendManager.getFollows()
             if(result.success ===false){
                 Toast.fail(result.errorMessage);
                 this.setState({refreshing:false});
@@ -114,14 +113,14 @@ export default class FriendScreen extends Component{
         }
 
         const result1 =await friendManager.getFollows();
-        if(result.success ===false){
-            Toast.fail(result.errorMessage,1);
+        if(result1.success ===false){
+            Toast.fail(result1.errorMessage,1);
             return;
         }
 
         this.setState((preState)=>{
             return{
-                dataSource:preState.dataSource.cloneWithRows(result.data)
+                dataSource:preState.dataSource.cloneWithRows(result1.data)
             }
         },()=>{
             Toast.hide();

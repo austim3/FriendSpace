@@ -12,13 +12,14 @@ import {
     Icon
 } from 'antd-mobile';
 
+import userManager from'../DataManager/UserManager'
 
 export default class ChangePersonInfoScreen extends Component {
     constructor(props){
         super(props)
         this.state ={
-            // nickname:props.location.state.nickname,
-            // sign:props.location.state.sign,
+            nickname:props.location.state.nickname,
+            sign:props.location.state.sign,
             nickname:'',
             sign:'',
             files:[]
@@ -69,12 +70,12 @@ export default class ChangePersonInfoScreen extends Component {
                         return;
                     }
 
-                          //  const reslut = await userManager.register(this.state.nickname,this.state.sign);
-                            //if(reslut.success === false){
-                             //   Toast.fail(reslut.errorMessage);
-                             //   return;
-                          //  }
-                           // this.props.history.relace('/SucceedScreen'); 
+                           const reslut = await userManager.register(this.state.nickname,this.state.sign);
+                            if(reslut.success === false){
+                               Toast.fail(reslut.errorMessage);
+                               return;
+                           }
+                           this.props.history.relace('/SucceedScreen'); 
                      }} 
                     >
                         提交修改
