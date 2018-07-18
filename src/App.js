@@ -39,7 +39,7 @@ class App extends Component {
           <Route path={'/CreateUserScreen'} component={CreateUserScreen} />
           <Route path={'/CreateMessageScreen'} component={CreateMessageScreen} />
           <Route path={'/HomeScreen'} component={HomeScreen} />
-          
+          <Route path={'/HomeScreen'} component={HomeScreen} />
         </div>
       </DocumentTitle>
     );
