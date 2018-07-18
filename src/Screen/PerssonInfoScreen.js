@@ -68,7 +68,7 @@ export default class PerssonInfoScreen extends Component {
            <InputItem
              type={'text'}
              editable={false}
-             value={this.state.user.nickname}
+            value={this.state.user.nickname}
              onChange={(nickname)=>{this.setState({user:{nickname}})}}
              placeholder={'请输入昵称'}
            >
@@ -80,6 +80,7 @@ export default class PerssonInfoScreen extends Component {
               value={this.state.user.sign}
               onChange={(sign)=>{this.setState({user:{sign}})}}
               placeholder={'请输入个性签名'}
+           
            >
            签名
            </InputItem>
