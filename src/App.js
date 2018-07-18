@@ -19,19 +19,21 @@ import FriendScreen from './Screen/FriendScreen';
 import PerssonInfoScreen from './Screen/PerssonInfoScreen';
 import LoginScreen from './Screen/LoginScreen';
 import EditPasswordScreen from './Screen/EditPasswordScreen';
+import TabBarScreen from './Screen/TabBarScreen'
 
 class App extends Component {
   render() {
     return (
         <div>
+          <Route exact path='/' component={LoginScreen} />
           <Route path={'/RegisterScreen'} component={RegisterScreen} />
           <Route path={'/ChangePersonInfoScreen'} component={ChangePersonInfoScreen} />
           <Route path={'/CreateUserScreen'} component={CreateUserScreen} />
           <Route path={'/CreateMessageScreen'} component={CreateMessageScreen} />
           <Route path={'/HomeScreen'} component={HomeScreen} />
+          <Route path={'/TabBarScreen'} component={TabBarScreen} />
           <Route path={'/FriendScreen'} component={FriendScreen} />
           <Route path={'/AddFriendScreen'} component={AddFriendScreen} />
-          <Route path={'/LoginScreen'} component={LoginScreen} />
           <Route path={'/EditPasswordScreen'} component={EditPasswordScreen} />
           <Route path={'/PerssonInfoScreen'} component={PerssonInfoScreen} />
         </div>
