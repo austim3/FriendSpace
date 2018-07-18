@@ -1,57 +1,55 @@
-import React, { Component } from 'react'
+import React,{Component} from 'react'
 
-import { 
+import {
     Toast,
     NavBar,
     ListView,
-    PullToRefresh
-} from 'antd-mobile';
+    PullToRefresh,
+    SearchBar
+}from 'antd-mobile';
 
-import accountManager from '../DataManager/AccountManager';
-import messageManager from '../DataManager/MessageManager';
-import friendManager from '../DataManager/FriendManager';
-import FriendListItem from '../ViewComponent/HomeListItem';
+import accoutManager from '../DataSerever/AccountManager';
+import friendManager from '../DataServer/FriendManager';
 
+import FriendListItem from '../ViewComponent/FriendListItem';
+import { fastest } from 'sw-toolbox';
 
-export default class FriendScreen extends Component {
-
+export default class FriendScreen extends Component{
     async componentDidMount(){
-        
-        if(accountManager.isLogin() === false){
+        if(accountManager.isLogin()===false){
             return;
         }
-
-        const result = await messageManager.homeMessage()
-        if(result.success === false){
+        const result =await friendManager.getFllows()
+        if(result.success ===false){
             Toast.fail(result.errorMessage);
             return;
         }
         this.setState((preState)=>{
             return{
                 dataSource:preState.dataSource.cloneWithRows(result.data)
-            }   
+            }
         })
-
     }
 
-    constructor(props) {
+    constructor(props){
         super(props)
-
         const dataSource = new ListView.DataSource({
-            rowHasChanged:(row1, row2) => row1 !== row2,
+            rowHasChanged:(row1,row2)=>row1!==row2,
         })
 
-        this.state = {
+        this.state={
             dataSource,
-            refreshing:false
+            refreshing:false,
+            nickname:'',
+            isSearchData:false,
         }
     }
 
     onRefresh = async()=>{
-        try {
+        try{
             this.setState({refreshing:true});
-            const result = await friendManager.getFollows();
-            if(result.success === false){
+            const result = await friendManager.getFllows()
+            if(result.success ===false){
                 Toast.fail(result.errorMessage);
                 this.setState({refreshing:false});
                 return;
@@ -60,51 +58,19 @@ export default class FriendScreen extends Component {
                 return{
                     dataSource:preState.dataSource.cloneWithRows(result.data),
                     refreshing:false
-                }   
+                }
             })
-        } catch (error) {
+        }catch(error){
             Toast.fail(`${error}`);
             this.setState({refreshing:false});
         }
-
     }
 
-    onsearch = async()=>{
-        
+    onSearch = async ()=>{
+        this.setState({
+            isSearchData:true,
+        })
+        Toast.loading('查询中，请稍后',0);
     }
 
-  render() {
-    return (
-      <div>
-        <NavBar
-            mode="dark"
-            rightContent={[
-                <span
-                    key={2}
-                    onClick={()=>{
-                        this.props.history.push('/CreateMessageScreen');
-                    }}
-                >发消息</span>
-            ]}
-        >FriendSpace</NavBar>
-        <ListView
-            useBodyScroll={true}
-            dataSource={this.state.dataSource}
-            pullToRefresh={
-                <PullToRefresh
-                    refreshing={this.state.refreshing}
-                    onRefresh={this.onRefresh}
-                />
-            }
-            renderRow={(message)=>{
-                return (
-                    <FriendListItem 
-                        {...message}
-                    />
-                )
-            }}
-        />
-      </div>
-    )
-  }
 }

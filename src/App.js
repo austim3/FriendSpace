@@ -10,13 +10,6 @@ import {
 
 import { Button } from 'antd-mobile';
 
-
-import RegisterScreen from './Screen/RegisterScreen';
-
-import ChangePersonInfoScreen from './Screen/ChangePersonInfoScreen';
-
-import CreateUserScreen from './Screen/CreateUserScreen';
-
 import AScreen from './Screen/AScreen';
 import BScreen from './Screen/BScreen';
 
