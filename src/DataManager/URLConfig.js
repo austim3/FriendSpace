@@ -14,6 +14,7 @@ const getUserURL = host+port+'/api/getUser';
 const getMessageURL = host+port+'/api/getMessage';
 const homeMessageURL = host+port+'/api/homeMessage';
 const findUserURL = host+port+'/api/findUser';
+const imageBaseURL=  host+port+'/resource/image/';
 const changePasswordURL = host+port+'/api/changePassword';
 export {
     loginURL,
@@ -29,5 +30,6 @@ export {
     getMessageURL,
     homeMessageURL,
     findUserURL,
-    changePasswordURL
+    changePasswordURL,
+    imageBaseURL
 }
