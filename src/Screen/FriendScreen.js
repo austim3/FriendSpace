@@ -69,6 +69,10 @@ export default class FriendScreen extends Component {
 
     }
 
+    onsearch = async()=>{
+        
+    }
+
   render() {
     return (
       <div>
