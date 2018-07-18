@@ -7,12 +7,14 @@ import {
     WingBlank,
     Icon,
     List,
-    InputItem
+    InputItem,
+    Toast,
+    Modal
 
 
 } from 'antd-mobile'
 
- import accountManager from '../DataServer/AccountMananger'
+ import accountManager from '../DataManager/AccountManager'
 
 export default class EditPasswordScreen extends Component{
 

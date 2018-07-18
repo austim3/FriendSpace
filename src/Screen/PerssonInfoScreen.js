@@ -11,12 +11,11 @@ import {
 
 }from 'antd-mobile';
 
-import {imageBaseURL} from '../DataServer/URLConfig';
+import {imageBaseURL} from '../DataManager/URLConfig';
+import accountManager from '../DataManager/AccountManager';
+import userManager from '../DataManager/UserManager';
 
-import accountManager from '../DataServer/AccountManager';
-import userManager from '../DataServer/UserManager';
-
-export default class AScreen extends Component {
+export default class PerssonInfoScreen extends Component {
 
   render() {
     return (
@@ -54,16 +53,30 @@ export default class AScreen extends Component {
         </List>
         <WhiteSpace/>
         <WingBlank>
-            <Button>
+            <Button
+               onClick={async()=>{
+                this.props.history.push('/ChangePersonInfoScreen',this.state.user);
+               }}
+            >
                 修改个人资料
             </Button>
             <WhiteSpace/>
-            <Button>
+            <Button
+                 onClick={async()=>{
+                  this.props.history.push('/EditPasswordScreen');
+              }}           
+            
+            >
                 修改密码
             </Button>
             <WhiteSpace/>
             <Button
                 type={'warning'}
+                onClick={async()=>{
+                  accountManager.logout();
+                  this.props.history.replace('/');
+                  
+            }}
             >
                 退出登录
             </Button>

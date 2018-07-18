@@ -4,11 +4,14 @@ import{
     getUserURL,
 } from './URLConfig';
 
+import {
+    FromData
 
+}from 'form-data';
 class UserManager{
   async createUser(nickName,sign,image){
       try {
-          const fromData= new FromData();
+          const fromData=new FromData();
 
           fromData.append('access_token',localStorage.access_token);
           fromData.append('nickName',nickName);
