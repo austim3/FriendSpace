@@ -33,7 +33,7 @@ class FriendManager {
         }
     }
 
-    async getFollow(){
+    async getFollows(){
         try {
             const follow={
                 access_token:localStorage.access_token,

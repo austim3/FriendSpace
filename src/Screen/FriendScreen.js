@@ -71,6 +71,100 @@ export default class FriendScreen extends Component{
             isSearchData:true,
         })
         Toast.loading('查询中，请稍后',0);
+        const result = await friendManager.findUser(this.state.nickname);
+        Toast.hide();
+
+        if(result.success ===false){
+            Toast.fail(result.errorMessage,1);
+            return;
+        }
+
+        this.setState((preState)=>{
+            return{
+                dataSource:preState.dataSource.cloneWithRows(result.data)
+            }
+        })
+    }
+
+    onCancle = async()=>{
+        this.setState({
+            nickname:'',
+            isSearchData:false
+        })
+        const result = await friendManager.getFollows()
+        if(result.success === false){
+            Toast.fail(result.errorMessage);
+            return;
+        }
+        this.setState((preState)=>{
+            return{
+                dataSource:preState.dataSource.cloneWithRows(result.data)
+            }
+        })
+    }
+
+    onDel=async (id)=>{
+        Toast.loading('操作中',0);
+        const result =await friendManager.unFollow(id);
+        Toast.hide();
+
+        if(result.success=== false){
+            Toast.fail(result.errorMessage,1);
+            return;
+        }
+
+        const result1 =await friendManager.getFollows();
+        if(result.success ===false){
+            Toast.fail(result.errorMessage,1);
+            return;
+        }
+
+        this.setState((preState)=>{
+            return{
+                dataSource:preState.dataSource.cloneWithRows(result.data)
+            }
+        },()=>{
+            Toast.hide();
+        })
+    }
+    render(){
+        return(
+            <div>
+                <NavBar
+                    mode='dark'
+                    >朋友</NavBar>
+                    <SearchBar
+                        placeholder={'请输入好友昵称'}
+                        value={this.state.nickname}
+                        onChange={(nickname)=>{this.setState({nickname})}}
+                        onSubmit={this.onSearch}
+                        onCancle={this.onCancle}
+                    />
+                    <ListView
+                        useBodyScroll={true}
+                        dataSource={this.state.dataSource}
+                        PullToRefresh={
+                            this.state.isSearchData?null :(
+                                <PullToRefresh
+                                    refreshing={this.state.refreshing}
+                                    onRefresh={this.onRefresh}
+                                />
+                            )
+                        }
+                        renderRow={(user)=>{
+                            return(
+                                <FriendListItem
+                                    {...user}
+                                    onItemClick={()=>{
+                                        this.props.history.push('/UserScreen',user)
+                                    }}
+                                    del={this.onDel}
+                                />
+                            )
+                        }}
+                        />
+            </div>
+        )
     }
 
 }
