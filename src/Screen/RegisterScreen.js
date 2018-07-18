@@ -10,7 +10,7 @@ import {
     Toast,
     Icon
 } from 'antd-mobile';
-// import userManager from '';
+import userManager from '../DataManager/UserManager';
 
 export default class RegisterScreen extends Component{
 
@@ -56,11 +56,11 @@ export default class RegisterScreen extends Component{
                     <Button
                         type={'primary'}
                     onClick={async()=>{
-                        //    const reslut = await userManager.register(this.state.username,this.state.password);
-                       //     if(reslut.success === false){
-                      //          Toast.fail(reslut.errorMessage);
-                     //           return;
-                    //        }
+                           const reslut = await userManager.register(this.state.username,this.state.password);
+                           if(reslut.success === false){
+                               Toast.fail(reslut.errorMessage);
+                               return;
+                           }
                            this.props.history.push('/CreateUserScreen');
                      }}
                     >

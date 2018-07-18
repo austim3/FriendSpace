@@ -35,7 +35,7 @@ class UserManager{
       try {
           const access_token = localStorage.access_token;
           const fromData = new FormData();
-          fromData.append('access_token',localStorage.access_token);
+          fromData.append('access_token',access_token);
           if (userInfo.nickName) {
               fromData.append('nickName',userInfo.nickName);
           }
@@ -46,7 +46,7 @@ class UserManager{
               fromData.append('image',userInfo.image.file);
           }
           
-          const res=await fetch(createUserURL,{
+          const res=await fetch(updateUserURL,{
               method:'POST',
               body:fromData,
           })

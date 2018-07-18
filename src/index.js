@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { MemoryRouter } from "react-router-dom";
 
-import {
-    BrowserRouter as Router,
-  } from 'react-router-dom'
 
 
 ReactDOM.render(
-<Router>
+<MemoryRouter>
     <App />
-</Router>
+</MemoryRouter>
 ,document.getElementById('root'));
 registerServiceWorker();

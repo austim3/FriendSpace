@@ -20,8 +20,6 @@ export default class ChangePersonInfoScreen extends Component {
         this.state ={
             nickname:props.location.state.nickname,
             sign:props.location.state.sign,
-            nickname:'',
-            sign:'',
             files:[]
         }
     }

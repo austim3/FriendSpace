@@ -10,7 +10,7 @@ import {
     InputItem,
 } from 'antd-mobile';
 
-import userManager from '../DataServer/UserManager';
+import userManager from '../DataManager/UserManager';
 
 
 

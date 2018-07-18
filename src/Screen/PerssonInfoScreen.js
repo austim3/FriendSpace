@@ -8,16 +8,45 @@ import {
     List,
     InputItem,
     Flex,
-
+    Toast
 }from 'antd-mobile';
 
-// import {imageBaseURL} from '../DataServer/URLConfig';
+import {imageBaseURL} from '../DataManager/URLConfig';
 
-// import accountManager from '../DataServer/AccountManager';
-// import userManager from '../DataServer/UserManager';
+import accountManager from '../DataManager/AccountManager';
+import userManager from '../DataManager/UserManager';
 
 export default class AScreen extends Component {
 
+  async componentDidMount(){
+
+    if(accountManager.isLogin() === false){
+        return;
+    }
+
+    const result = await userManager.getUserInfo();
+
+    if(result.success === false){
+        Toast.fail(result.errorMessage,1);
+        return;
+    }
+
+    this.setState({user:result.data});
+
+  }
+
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+        user:{
+          nickname:'',
+          sign:'',
+          image:''
+        },
+    }
+  }
   render() {
     return (
       <div>
@@ -29,7 +58,8 @@ export default class AScreen extends Component {
            style={{backgroundColor:'#ffffff'}}
         >
           <img
-             //alt={''}
+             alt={''}
+             src={imageBaseURL+this.state.user.image}
              style={{width:'100px',height:'100px',margin:'5px'}}
           
           />

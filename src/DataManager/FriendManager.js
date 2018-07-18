@@ -103,3 +103,4 @@ class FriendManager {
         }
     }
 }
+export default new FriendManager();

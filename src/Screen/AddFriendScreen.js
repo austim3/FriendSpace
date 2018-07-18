@@ -8,14 +8,14 @@ import {
     Icon
 } from 'antd-mobile';
 
-import accountManager from '../DataServer/AccountManager';
-import friendManager from '../DataServer/FriendManager';
+import accountManager from '../DataManager/AccountManager';
+import friendManager from '../DataManager/FriendManager';
 
 import FriendListItem from '../ViewComponent/FriendListItem';
 
 export default class AddFriendScreen extends Component{
     componentDidMount(){
-        if(accountManager.isLogin()==false){
+        if(accountManager.isLogin()===false){
             this.props.history.replace('/');
             return;
         }
