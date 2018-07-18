@@ -85,10 +85,6 @@ class MessageManager {
             }
         }  
     }
-
-    
-
-
 }
 
 export default new MessageManager();
