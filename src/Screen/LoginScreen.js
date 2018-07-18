@@ -57,7 +57,7 @@ export default class LoginScreen extends Component {
                 onClick={async()=>{
                     console.log('xxx')
                     const result = await accountManager.login(this.state.username,this.state.password);
-                    console.log(result);
+                    
                     if(result.success === false){
                         Toast.fail(result.errorMessage);
                         return;

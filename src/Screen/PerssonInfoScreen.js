@@ -19,20 +19,23 @@ import userManager from '../DataManager/UserManager';
 export default class PerssonInfoScreen extends Component {
 
   async componentDidMount(){
+    try {
 
-    if(accountManager.isLogin() === false){
+      if(accountManager.isLogin() === false){
         return;
-    }
+      }
 
-    const result = await userManager.getUser();
-
-    if(result.success === false){
+      const result = await userManager.getUser();
+      if(result.success === false){
         Toast.fail(result.errorMessage,1);
         return;
+      }
+      this.setState({user:result.data});
+
+    } catch (error) {
+      
     }
-
-    this.setState({user:result.data});
-
+    
   }
 
 
@@ -68,9 +71,9 @@ export default class PerssonInfoScreen extends Component {
            <InputItem
              type={'text'}
              editable={false}
-            value={this.state.user.nickname}
-             onChange={(nickname)=>{this.setState({user:{nickname}})}}
-             placeholder={'请输入昵称'}
+             value={this.state.user.nickname}
+            //  onChange={(nickname)=>{this.setState({user:{nickname}})}}
+            //  placeholder={'请输入昵称'}
            >
            昵称
             </InputItem>

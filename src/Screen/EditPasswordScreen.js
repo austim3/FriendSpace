@@ -12,7 +12,7 @@ import {
 
 } from 'antd-mobile'
 
-// import accountManager from '../DataServer/AccountMananger'
+import accountManager from '../DataManager/AccountManager';
 
 export default class EditPasswordScreen extends Component{
 
@@ -60,7 +60,7 @@ export default class EditPasswordScreen extends Component{
                 <Button
                    type={'primary'}
                    onClick={async()=>{
-                       //const result=await accountManager.editPassword(this.state.old_password,this.state.new )
+                       const result=await accountManager.editPassword(this.state.old_password,this.state.new )
                    }}
                 >
                 提交修改
