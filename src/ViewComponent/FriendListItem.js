@@ -45,6 +45,7 @@ export default class FriendListItem extends Component{
                     <Card.Header
                         title={this.props.nickname}
                         thumb={imageBaseURL+this.props.image}
+                        thumbStyle={{width:'40px',height:'40px'}}
                         extra={this.props.sign}
                         />
                     </Card>
