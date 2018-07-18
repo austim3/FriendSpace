@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import {
     imageBaseURL
-} from '../DataServer/URLConfig';
+} from '../DataManager/URLConfig';
 
 import './HomeListItem.css'
 
